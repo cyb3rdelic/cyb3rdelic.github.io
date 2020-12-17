@@ -3,8 +3,8 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            Hydeout
-tagline:          'A Jekyll theme'
+title:            cyb3rdelic
+tagline:          'A blog about nothing'
 description:      'The <a href="http://hyde.getpoole.com" target="_blank">Hyde</a> theme for <a href="http://jekyllrb.com" target="_blank">Jekyll</a>, refreshed.'
 url:              https://cyb3rdelic.github.io
 baseurl:          '/'
@@ -15,8 +15,8 @@ baseurl:          '/'
                   # sidebar_blog_link below.
 
 author:
-  name:           'Andrew Fong'
-  url:            https://twitter.com/fongandrewc
+  name:           'Jordan Reedy'
+  url:
 
 paginate:         5
 # paginate_path:    '/page:num'
