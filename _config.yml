@@ -3,7 +3,7 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            cyb3rdelic
+title:            Cyb3rdelic
 tagline:          'A blog about nothing'
 description:      'A blog about nothing in particular'
 url:              https://cyb3rdelic.github.io
@@ -18,7 +18,7 @@ author:
   name:           'Jordan Reedy'
   url:
 
-paginate:         5
+paginate:         3
 # paginate_path:    '/page:num'
                     # Or '/blog/page:num' if you want to move your index pages
 
