@@ -14,10 +14,12 @@ After searching the internet I only found on slightly helpful piece of informati
 This page went through the creation of and RDP file and how to publish it using Storefront. This help article helped, but not fully.  I'll show you the adjustment I had to make that wasn't that straightforward, at least for me.
 
 Here's the old configuration. As you can see the command and arguments are all on one line.
+
 ![Old Configuration](\assets\2020-12-22\CitrixOldPathConfiguration.png)
 
 Here's the new configuration. The command needed to be broken out from the single line like it used to be.
-![Old Configuration](\assets\2020-12-22\CitrixNewPathConfiguration.png)
+
+![New Configuration](\assets\2020-12-22\CitrixNewPathConfiguration.png)
 
 
 And that's all it took! I believe that it happened because the Citrix instance was upgraded and those links had not been used since. Either way, it's back up and working again. On to the next thing! I hope if someone comes across this, it helps.
