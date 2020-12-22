@@ -33,4 +33,4 @@ Here's the new configuration. The command needed to be broken out from the singl
 
 
 
-And that's all it took! I believe that it happened because the Citrix instance was upgraded and those links had not been used since. Either way, it's back up and working again. On to the next thing! I hope if someone comes across this, it helps. Citrix is interesting so far.
+And that's all it took! I believe that it happened because the Citrix instance was upgraded and those links had not been used since. Either way, it's back up and working again. On to the next thing! I hope if someone comes across this, it helps.
