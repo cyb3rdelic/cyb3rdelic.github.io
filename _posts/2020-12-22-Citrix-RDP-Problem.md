@@ -15,11 +15,21 @@ This page went through the creation of and RDP file and how to publish it using 
 
 Here's the old configuration. As you can see the command and arguments are all on one line.
 
-![Old Configuration](\assets\2020-12-22\CitrixOldPathConfiguration.png)
+![Old Configuration](\assets\2020-12-22\CitrixOldPathConfiguration.PNG)
+
+
+
+
 
 Here's the new configuration. The command needed to be broken out from the single line like it used to be.
 
-![New Configuration](\assets\2020-12-22\CitrixNewPathConfiguration.png)
+![New Configuration](\assets\2020-12-22\CitrixNewPathConfiguration.PNG)
+
+
+
+
+
+
 
 
 And that's all it took! I believe that it happened because the Citrix instance was upgraded and those links had not been used since. Either way, it's back up and working again. On to the next thing! I hope if someone comes across this, it helps.
