@@ -3,7 +3,7 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            Cyb3rdelic
+title:           Cyb3rdelic
 tagline:          'A blog about nothing'
 description:      'A blog about nothing in particular'
 url:              https://cyb3rdelic.github.io
