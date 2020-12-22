@@ -17,6 +17,8 @@ Here's the old configuration. As you can see the command and arguments are all o
 
 ![Old Configuration](\assets\2020-12-22\CitrixOldPathConfiguration.PNG)
 
+<img src="/assets/images/CitrixOldPathConfiguration.png" alt="">
+
 
 
 
