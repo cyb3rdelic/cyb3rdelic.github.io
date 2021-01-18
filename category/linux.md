@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Linux Stuff
+title: Linux
 ---
 
 Linux is fun. Check it out.
