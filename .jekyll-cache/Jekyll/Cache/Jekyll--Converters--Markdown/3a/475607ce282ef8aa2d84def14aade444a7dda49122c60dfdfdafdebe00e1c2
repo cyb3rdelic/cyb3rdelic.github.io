@@ -1,0 +1,110 @@
+I"0<p>Hey all. I was tasked with setting up a new NagiosXI instance and we needed a dashboard for the office. I found one, NagiosTV, which is super clean and easy to use. The only problem I ran into was creating a dashboard that was able to be accessed without credentials. I ended up using MK Livestatus to fetch the data to display on our big screen.</p>
+
+<p>I’ll show you how to do this here, just because it took a bit to get it figured out.</p>
+
+<h2 id="nagiostv-installation">NagiosTV Installation</h2>
+
+<p><a href="https://nagiostv.com/">NagiosTV</a> Created and maintained by chriscareycode on github.
+The github repository has an install guide. I’ll also post mine here just to keep everything together.</p>
+
+<h2 id="livestatus-installation">Livestatus Installation</h2>
+
+<p>Livestatus now resides with CheckMK, I’ll post the specific download link.
+<a href="https://docs.checkmk.com/latest/en/intro.html">CheckMK</a>
+<b>Note:</b> I don’t believe they are releasing any more version of Livestatus. The last version I see is 1.5.0p24. Newer releases only offer Checkmk with OMD.</p>
+
+<p><a href="https://download.checkmk.com/checkmk/1.5.0p24/mk-livestatus-1.5.0p24.tar.gz"></a></p>
+
+<p>Let’s begin by making sure we download the needed utilities</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>apt <span class="nb">install </span>rrdtool librrd-dev librrd8 libboost-dev libboost-system-dev
+</code></pre></div></div>
+
+<ol>
+  <li>First you’ll need to download the tar file from above and extract it.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /tmp
+<span class="nv">$ </span>wget https://download.checkmk.com/checkmk/1.5.0p24/mk-livestatus-1.5.0p24.tar.gz
+<span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xzf</span> mk-livestatus-1.5.0p24.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>mk-livestatus-1.5.0p24
+</code></pre></div></div>
+
+<ol>
+  <li>Next we’ll configure, make, and install mk-livestatus. Be sure to use the –with-nagios4 flag for proper compilation and installation.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./configure <span class="nt">--with-nagios4</span>
+<span class="nv">$ </span>make
+<span class="nv">$ </span>make <span class="nb">install</span>
+</code></pre></div></div>
+<p>Restart the Nagios Service</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl restart nagios.service
+</code></pre></div></div>
+<ol>
+  <li>Change ownership to nagios.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">chmod </span>777 /usr/local/nagiosxi/var/subsys/livestatus
+</code></pre></div></div>
+
+<ol>
+  <li>Let’s add a line in nagios.cfg to allow livesocket to receive updates from nagios.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vi /usr/local/nagios/etc/nagios.cfg
+</code></pre></div></div>
+<p>Add the line</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">broker_module</span><span class="o">=</span>/usr/local/lib/mk-livestatus/livestatus.o /usr/local/nagiosxi/var/subsys/livestatus
+</code></pre></div></div>
+
+<p>You should see another broker_module line while you’re in there. Just add the above line after that one.</p>
+
+<p>Restart the nagios service again for good measure. I actually did a whole reboot at this point.</p>
+
+<ol>
+  <li>Now we should be able to test and see if we get output.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"GET status"</span> | /usr/local/bin/unixcat /usr/local/nagiosxi/var/subsys/livestatus
+</code></pre></div></div>
+<p>Note: /usr/local/nagiosxi/var/subsys/livestatus is where livesocket opens the socket. If we weren’t using xi, the path could reflect “/usr/local/nagios/var/subsys” for example.</p>
+
+<ol>
+  <li>Lastly, let’s point NagiosTV to where it should look for that livesocket instance.</li>
+</ol>
+
+<p>Under /usr/local/nagiosxi/html/nagiostv/connectors there are two files: livestatus-settings.ini and livestatus-settings.ini.sample</p>
+
+<p>The file ending in .sample is obviously a sample, so we can leave that alone for a backup. Let’s change this line in livestatus-settings.ini</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>livestatus]
+socket_path <span class="o">=</span> /usr/local/nagios/var/rw/live.sock
+</code></pre></div></div>
+<p>to</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>livestatus]
+socket_path <span class="o">=</span> /usr/local/nagiosxi/var/subsys/livestatus
+</code></pre></div></div>
+
+<p>One more service restart</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl restart nagios.service
+</code></pre></div></div>
+
+<p>And that’s all from that side. Now let’s navigate to the NagiosTV url. We’ll need to change some settings.</p>
+
+<p><img src="\assets\2021-1-18\NagiosTV-Settings.PNG" alt="NagiosTV Main Settings" /></p>
+
+<p>The above screenshot reflects how I have mine set up. You’ll want to make sure that “Fetch data from” is MK Livestatus.
+All of the other settings should be fine.</p>
+
+<p>There we have it! NagiosTV should open without prompting for any credentials! This is going to work great on the large screen TV in the office.</p>
+
+<p>One more thing. It’s a good idea to save your settings so that anyone who accesses NagiosTV has the same settings as you configure. Good for situations where multiple people may access the dashboard individually. Below is a screenshot, just follow the instructions listed on the page.</p>
+
+<p><img src="\assets\2021-1-18\NagiosTV-Save-Settings-To-Server.PNG" alt="NagiosTV Save Settings" /></p>
+
+<p>Happy Monitoring!</p>
+:ET
