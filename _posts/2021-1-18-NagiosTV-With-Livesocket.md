@@ -12,6 +12,14 @@ I'll show you how to do this here, just because it took a bit to get it figured 
 Livestatus now resides with CheckMK, I'll post the specific download link.
 <a href="https://docs.checkmk.com/latest/en/intro.html">CheckMK</a>
 <b>Note:</b> I don't believe they are releasing any more version of Livestatus. The last version I see is 1.5.0p24. Newer releases only offer Checkmk with OMD.
-https://download.checkmk.com/checkmk/1.5.0p24/mk-livestatus-1.5.0p24.tar.gz
+
+
+<a href="https://download.checkmk.com/checkmk/1.5.0p24/mk-livestatus-1.5.0p24.tar.gz">
 
 Let's begin
+
+First you'll need to download the tar file from above.
+
+```bash
+$ wget https://download.checkmk.com/checkmk/1.5.0p24/mk-livestatus-1.5.0p24.tar.gz
+```
