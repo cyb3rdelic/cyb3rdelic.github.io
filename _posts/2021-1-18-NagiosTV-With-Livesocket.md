@@ -1,8 +1,6 @@
 ---
 layout: post
 title: Creating a dashboard with NagiosTV and Livesocket on Ubuntu 20.04
-categories:
-  - linux
 ---
 
 Hey all. I was tasked with setting up a new NagiosXI instance and we needed a dashboard for the office. I found one, NagiosTV, which is super clean and easy to use. The only problem I ran into was creating a dashboard that was able to be accessed without credentials. I ended up using MK Livestatus to fetch the data to display on our big screen.
