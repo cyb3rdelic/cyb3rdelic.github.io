@@ -5,9 +5,9 @@ sidebar_link: true
 ---
 
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it
-  for your own use upon downloading. Carry on!
+Welcome to my blog! I'm using this to track projects I work on, fixes I find, and general cool stuff. I hope you find something helpful here.
 </p>
 
-To make pages show up in the sidebar, add `sidebar_link: true` to the front
-matter.
+I'm a system administrator early in my career, looking to continuing my education while having fun learning. I'm interested in computer security, cyber threat intelligence, and general systems administration.
+
+I'm also interested in learning programming more in depth, as well as getting into devops. It seems to be the future and I don't want to be left behind. Stay with me for more fun stuff!
