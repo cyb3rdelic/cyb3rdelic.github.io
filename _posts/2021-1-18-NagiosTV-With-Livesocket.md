@@ -10,7 +10,15 @@ I'll show you how to do this here, just because it took a bit to get it figured 
 ## NagiosTV Installation
 
 <a href="https://nagiostv.com/">NagiosTV</a> Created and maintained by chriscareycode on github.
-The github repository has an install guide. I'll also post mine here just to keep everything together.
+The github repository has an install guide. I'll also post mine here just to keep everything together. It's pretty easy.
+
+```bash
+$ wget https://github.com/chriscareycode/nagiostv-react/releases/download/v0.7.1/nagiostv-0.7.1.tar.gz
+$ tar xvfz nagiostv-0.7.1.tar.gz
+$ sudo mv nagiostv /usr/local/nagiosxi/html/nagiostv
+```
+
+Now you should be able to navigate to the nagiostv page: ```bash http://servername/nagiosxi/nagiostv ```
 
 
 
@@ -34,7 +42,7 @@ Let's begin by making sure we download the needed utilities
 $ apt install rrdtool librrd-dev librrd8 libboost-dev libboost-system-dev
 ```
 
-1. First you'll need to download the tar file from above and extract it.
+### First you'll need to download the tar file from above and extract it.
 
 ```bash
 $ cd /tmp
@@ -43,25 +51,25 @@ $ tar -xzf mk-livestatus-1.5.0p24.tar.gz
 $ cd mk-livestatus-1.5.0p24
 ```
 
-2. Next we'll configure, make, and install mk-livestatus. Be sure to use the --with-nagios4 flag for proper compilation and installation.
+### Next we'll configure, make, and install mk-livestatus. Be sure to use the --with-nagios4 flag for proper compilation and installation.
 
 ```bash
 $ ./configure --with-nagios4
 $ make
 $ make install
 ```
-Restart the Nagios Service
+### Restart the Nagios Service
 
 ```bash
 $ systemctl restart nagios.service
 ```
-3. Change ownership to nagios.
+### Change ownership to nagios.
 
 ```bash
 $ chmod 777 /usr/local/nagiosxi/var/subsys/livestatus
 ```
 
-4. Let's add a line in nagios.cfg to allow livesocket to receive updates from nagios.
+### Let's add a line in nagios.cfg to allow livesocket to receive updates from nagios.
 
 ```bash
 $ vi /usr/local/nagios/etc/nagios.cfg
@@ -76,14 +84,14 @@ You should see another broker_module line while you're in there. Just add the ab
 Restart the nagios service again for good measure. I actually did a whole reboot at this point.
 
 
-5. Now we should be able to test and see if we get output.
+### Now we should be able to test and see if we get output.
 
 ```bash
 $ echo "GET status" | /usr/local/bin/unixcat /usr/local/nagiosxi/var/subsys/livestatus
 ```
 Note: /usr/local/nagiosxi/var/subsys/livestatus is where livesocket opens the socket. If we weren't using xi, the path could reflect "/usr/local/nagios/var/subsys" for example.
 
-6. Lastly, let's point NagiosTV to where it should look for that livesocket instance.
+### Lastly, let's point NagiosTV to where it should look for that livesocket instance.
 
 Under /usr/local/nagiosxi/html/nagiostv/connectors there are two files: livestatus-settings.ini and livestatus-settings.ini.sample
 
