@@ -18,7 +18,7 @@ $ tar xvfz nagiostv-0.7.1.tar.gz
 $ sudo mv nagiostv /usr/local/nagiosxi/html/nagiostv
 ```
 
-Now you should be able to navigate to the nagiostv page: ```bash http://servername/nagiosxi/nagiostv ```
+Now you should be able to navigate to the nagiostv page: ```http://servername/nagiosxi/nagiostv ```
 
 
 
