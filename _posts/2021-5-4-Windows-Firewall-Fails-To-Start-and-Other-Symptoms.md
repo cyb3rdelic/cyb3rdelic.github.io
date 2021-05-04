@@ -79,7 +79,9 @@ Symptoms look like this:
 3. Admins have an impending sense of “dread” when setting up systems for new users because 80% of the time they are going to spend hours sorting out the above issues.
 4. You call Microsoft Support complaining of these issues and they are eventually stumped and tell you to rebuild the desktop/laptop from scratch… great for end-users that deal with this issue 1 year into the job and rather like their systems as-is… -or- MS Support tells you to pop a registry key into the end-user’s system which just disables Modern Authentication all together – which may fix Outlook but leaves many many other things broken…
 
-If any of that sounds familiar, I highly recommend you read the article he published on linked-in…. this is THE SILVER BULLET to end your Microsoft Authentication woes:<a href="https://www.linkedin.com/pulse/solving-modern-authentication-issues-office-365-chris-leet/"> Solving Modern Authentication Issues with Office 365</a></cite>
+If any of that sounds familiar, I highly recommend you read the article he published on linked-in…. this is THE SILVER BULLET to end your Microsoft Authentication woes:<a href="https://www.linkedin.com/pulse/solving-modern-authentication-issues-office-365-chris-leet/"> Solving Modern Authentication Issues with Office 365</a>
+
+</cite>
 
 This is a good resource that is already written so I don't have to re-invent the wheel. I'd really recommend reading Chris's Linkedin article covering the AAD broker plugin, as it was exactly what was going on with us. Unfortunately, this still didn't solve our problem. So let's check that out now. We're almost there, I promise!
 
