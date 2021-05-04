@@ -36,5 +36,9 @@ sidebar_home_link:  true
                                 # to enable a separate blog link.
 
 
-disquis:
+disqus:
   shortname: cyb3rdelic-github-io
+
+twitter_username: cyb3rdelic
+github_username: cyb3rdelic
+google_analytics: G-Z4SWD1Y0KR
