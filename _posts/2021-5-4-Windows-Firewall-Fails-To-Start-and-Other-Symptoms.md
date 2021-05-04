@@ -2,6 +2,7 @@
 layout: post
 title: Windows Firewall Service Fails to Start, Office 365 MFA Problems Abound, and How They Are Related
 categories: Windows
+comments: true
 tags:
   - Windows 10
   - Windows 1709
