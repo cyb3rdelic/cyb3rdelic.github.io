@@ -71,14 +71,16 @@ These reg keys were all over the place in our environment. No wonder the rollout
 
 That last link by kiloroot is the one that really helped me discover the root cause. This didn't ultimately end up being the issue, but pointed me in the right direction. Here's a quote of some more symptoms:
 
-<cite>A colleague of mine recently solved one of the biggest pain points I have dealt with regarding Office365 – that is, Microsoft’s seemingly hit-or-miss modern authentication.
+<cite>A colleague of mine recently solved one of the biggest pain points I have dealt with regarding Office365 – that is, Microsoft’s seemingly hit-or-miss modern authentication.</cite>
 
+<cite>
 Symptoms look like this:
 1. Outlook client can’t connect and/or authenticate for end-users
 2. Turning on Azure MFA for an end-user ruins their life (and yours) because all office applications, teams, etc. break.
 3. Admins have an impending sense of “dread” when setting up systems for new users because 80% of the time they are going to spend hours sorting out the above issues.
 4. You call Microsoft Support complaining of these issues and they are eventually stumped and tell you to rebuild the desktop/laptop from scratch… great for end-users that deal with this issue 1 year into the job and rather like their systems as-is… -or- MS Support tells you to pop a registry key into the end-user’s system which just disables Modern Authentication all together – which may fix Outlook but leaves many many other things broken…
-
+</cite>
+<cite>
 If any of that sounds familiar, I highly recommend you read the article he published on linked-in…. this is THE SILVER BULLET to end your Microsoft Authentication woes:<a href="https://www.linkedin.com/pulse/solving-modern-authentication-issues-office-365-chris-leet/"> Solving Modern Authentication Issues with Office 365</a>
 
 </cite>
