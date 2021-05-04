@@ -1,5 +1,6 @@
 ---
 layout: post
+category: Linux
 title: Creating a dashboard with NagiosTV and Livesocket on Ubuntu 20.04
 ---
 
