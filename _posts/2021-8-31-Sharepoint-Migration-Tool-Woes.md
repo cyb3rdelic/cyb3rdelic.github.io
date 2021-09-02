@@ -18,6 +18,7 @@ The time has come to migrate our Sharepoint 2013 Server to Microsoft 365. It's b
 Here are some of the error messages I've recieved while working with this tool:
 
 * Please re-enter your user ID or password
+
 ![Login Dialog](\assets\2021-8-31\SPMT-UserID.PNG)
 
 
