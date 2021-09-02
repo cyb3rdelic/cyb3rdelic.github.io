@@ -19,7 +19,7 @@ Here are some of the error messages I've recieved while working with this tool:
 
 Please re-enter your user ID or password
 
-![Login Dialog](\assets\2021-8-31\SPMT-UserID.PNG)
+![Login Dialog](\assets\2021-8-31\SPMT-UserID.png)
 
 
 2021-08-31 09:04:43.8415|ERROR|GLB|8|Csom call with TraceCorrelationId No TraceCorrelationId from OnPrem Microsoft.SharePoint.MigrationTool.MigrationLib.SharePoint.MigSPConfigException: Web Issue when doing SP Query ---> Microsoft.SharePoint.Migration.Common.Exceptions.WebInternalErrorException ---> System.Net.WebException: The remote server returned an error: (500) Internal Server Error.
