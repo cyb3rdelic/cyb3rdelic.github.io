@@ -1,0 +1,57 @@
+I"
+<p>The time has come to migrate our Sharepoint 2013 Server to Microsoft 365. It’s been a few days of fighting with the tool provided by Microsoft. It isn’t a bad tool, but it isn’t forthcoming with error messages when you run into issues.</p>
+
+<h2 id="error-messages">Error Messages</h2>
+
+<p>Here are some of the error messages I’ve recieved while working with this tool:</p>
+
+<ul>
+  <li>Please re-enter your user ID or password</li>
+</ul>
+
+<p><img src="\assets\2021-8-31\SPMT-UserID.PNG" alt="Login Dialog" /></p>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>2021-08-31 09:04:43.8415</td>
+          <td>ERROR</td>
+          <td>GLB</td>
+          <td>8</td>
+          <td>Csom call with TraceCorrelationId No TraceCorrelationId from OnPrem Microsoft.SharePoint.MigrationTool.MigrationLib.SharePoint.MigSPConfigException: Web Issue when doing SP Query —&gt; Microsoft.SharePoint.Migration.Common.Exceptions.WebInternalErrorException —&gt; System.Net.WebException: The remote server returned an error: (500) Internal Server Error.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="quick-fix-information">Quick fix information</h2>
+
+<p>I ran a wireshark capture and noticed what URL the tool was attempting to contact</p>
+
+<p><img src="\assets\2021-8-31\SPMT-Wireshark-Headers.PNG" alt="Wireshark Capture" /></p>
+
+<p>As you can see it was attempting to contact /acct/_vti_bin/client.svc/ProcessQuery</p>
+
+<p>Note: You can ignore the /acct/ in that path, it was specific to my site.</p>
+
+<p>You can see the response in blue, System.ServiceModel.ServiceActivationException</p>
+
+<p>This led me to a StackOverflow post that saved me finally:</p>
+
+<p><a href="https://stackoverflow.com/questions/56846573/sharepoint-2013-why-getting-500-error-while-creating-clientcontext">SharePoint 2013: Why getting 500 error while creating clientContext?</a></p>
+
+<p>It turns out we have a couple of services that need to be turned on in order for the CSOM to connect to the backend. Each of these were turned off on the production machine for some reason.</p>
+
+<p><img src="\assets\2021-8-31\SPMT-IIS-Admin-Service.PNG" alt="IIS Admin Service" /></p>
+
+<p><img src="\assets\2021-8-31\SPMT-Services-On-Server.PNG" alt="Services On Server" /></p>
+
+<p>Once I turned these on I was ready to go! The migration went through successfully and my data got sent up to Sharepoint Online.</p>
+
+<p>I know this is a very edge case, but hopefully if you’re reading this, it’ll help you out!</p>
+
+<p>Got any questions? Drop me a line on twitter!</p>
+:ET
